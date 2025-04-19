@@ -1,10 +1,9 @@
 #include <iostream>
 using namespace std;
-
 int main() {
     char nomor[20];
-    int panjang = 0;
+    int panjang =0;
 
-    cout << "Masukkan nomor kartu digital: ";
-    cin >> nomor;
+    cout<<"Masukkan nomor kartu digital: ";
+    cin>>nomor;
 
