@@ -11,7 +11,7 @@ int main() {
     cout << "Masukkan jam keluar (HHMM): ";
     cin >> waktu_keluar;
 
-    if (kode[9] == '\0' || kode[10] != '\0') {
+    if (kode[10] != '\0') {
         cout << "Kode parkir harus 10 digit!" << endl;
         return 1;
     }
