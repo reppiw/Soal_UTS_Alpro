@@ -1,1 +1,81 @@
-//Kerjakan soal nomor 2 disini (Hapus komentar ini)
+#include <iostream>
+using namespace std;
+
+int main() {
+    char kode[11];
+    int waktu_keluar, tarif_awal, tarif_tambahan;
+    string jenis;
+
+    cout << "Masukkan kode parkir (10 digit): ";
+    cin >> kode;
+    cout << "Masukkan jam keluar (HHMM): ";
+    cin >> waktu_keluar;
+
+    if (kode[9] == '\0' || kode[10] != '\0') {
+        cout << "Kode parkir harus 10 digit!" << endl;
+        return 1;
+    }
+    
+    if (kode[0] == '1' && kode[1] == '0') {
+        jenis = "Mobil pribadi";
+        tarif_awal = 5000;
+        tarif_tambahan = 3000;
+    } 
+    else if (kode[0] == '2' && kode[1] == '0') {
+        jenis = "Motor";
+        tarif_awal = 3000;
+        tarif_tambahan = 2000;
+    } 
+    else if (kode[0] == '3' && kode[1] == '0') {
+        jenis = "Bus";
+        tarif_awal = 10000;
+        tarif_tambahan = 7000;
+    } 
+    else {
+        cout << "Jenis kendaraan tidak dikenali." << endl;
+        return 1;
+    }
+
+    char waktu_str[5] = {kode[2], kode[3], kode[4], kode[5], '\0'};
+    int waktu_masuk = atoi(waktu_str);
+
+    int jam_masuk = waktu_masuk / 100;
+    int menit_masuk = waktu_masuk % 100;
+    int jam_keluar = waktu_keluar / 100;
+    int menit_keluar = waktu_keluar % 100;
+
+    int total_masuk = jam_masuk * 60 + menit_masuk;
+    int total_keluar = jam_keluar * 60 + menit_keluar;
+
+    if (total_keluar < total_masuk) {
+        total_keluar += 24 * 60;
+    }
+
+    int durasi_menit = total_keluar - total_masuk;
+    int durasi_jam = (durasi_menit + 59) / 60;
+
+    int biaya_total = tarif_awal;
+    if (durasi_jam > 1) {
+        biaya_total += (durasi_jam - 1) * tarif_tambahan;
+    }
+
+    cout << "\n--- Info Parkir ---" << endl;
+    cout << "Jenis kendaraan: " << jenis << endl;
+    cout << "Waktu masuk: " << kode[2] << kode[3] << ":" << kode[4] << kode[5] << endl;
+    cout << "Waktu keluar: " << (jam_keluar < 10 ? "0" : "") << jam_keluar << ":" << (menit_keluar < 10 ? "0" : "") << menit_keluar << endl;
+    cout << "Durasi parkir: " << durasi_jam << " jam" << endl;
+    cout << "Lokasi parkir: " << &kode[6] << endl;
+    cout << "Total biaya: Rp " << biaya_total << endl;
+
+    return 0;
+}
+
+/*algoritma dari program ini:
+    1.akan diminta kode digit 10 dan waktu jam keluar dalam bentuk HHMM(jam jam menit menit)
+    2.kemudian akan di cek panjang kode, jika dibawah 10 digit(if (kode[9] == '\0') atau lebih dari 10 digit(kode[10] != '\0') maka akan berhenti
+    3.kemudian menentukan jenis kendaraan serta tarif awal dan tarif tambahan nya
+    4.kemudian menyimpan string waktu pada kode 3 hingga 6
+    5.konversi dari waktu masuk dan waktu keluar untuk diambil 2 angka awal dan 2 angka akhir lalu akan di ubah jam masuk dan keluar ke total menit agar dihitung durasi parkir
+        (dilihat kondisi jika melewati tengah malam (ditambah 24 jam) dan kondisi agar waktunya dibulatkan agar hitungan jamnya pas(jika durasi parkir 1 jam 34 menit maka dihitung 2 jam))
+    6.setelah dihitung biaya untuk 1 jam awal, maka akan dihitung biaya per jam setelah 1 jam setelahnya
+    7.buat output(mulai dari jenis kendaraan(dilihat dari kode),kode waktu masuk dan waktu keluar,tunjukkan durasi parkir,lokasi parkir(diambil dari kode),dan biaya total parkir)*/
