@@ -72,7 +72,7 @@ int main() {
 
 /*algoritma dari program ini:
     1.akan diminta kode digit 10 dan waktu jam keluar dalam bentuk HHMM(jam jam menit menit)
-    2.kemudian akan di cek panjang kode, jika dibawah 10 digit(if (kode[9] == '\0') atau lebih dari 10 digit(kode[10] != '\0') maka akan berhenti
+    2.kemudian akan di cek panjang kode, jika bukan 10 digit(kode[10] != '\0') maka akan berhenti
     3.kemudian menentukan jenis kendaraan serta tarif awal dan tarif tambahan nya
     4.kemudian menyimpan string waktu pada kode 3 hingga 6
     5.konversi dari waktu masuk dan waktu keluar untuk diambil 2 angka awal dan 2 angka akhir lalu akan di ubah jam masuk dan keluar ke total menit agar dihitung durasi parkir
