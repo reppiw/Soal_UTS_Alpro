@@ -1,1 +1,75 @@
-//Kerjakan soal nomor 4 disini (Hapus komentar ini)
+#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    char s[101];
+
+    cin>>n>>s;
+
+    int poinA = 0, poinB = 0;
+    char hasil[4];
+    hasil[0] = hasil[1] = hasil[2] = '\0';
+    int streak = 0;
+
+    for (int i = 0; i < n; i++) {
+        char hasilbaru = s[i];
+
+        if (hasilbaru == 'A') {
+            poinA += 3;
+        } else if (hasilbaru == 'B') {
+            poinB += 3;
+        } else if (hasilbaru == 'C') {
+            poinA += 1;
+            poinB += 1;
+        }
+
+        if (streak < 3) {
+            hasil[streak] = hasilbaru;
+            streak++;
+        } else {
+            hasil[0] = hasil[1];
+            hasil[1] = hasil[2];
+            hasil[2] = hasilbaru;
+        }
+
+        if (streak == 3) {
+            if (hasil[0] == 'A' && hasil[1] == 'A' && hasil[2] == 'A') {
+                poinA += 2;
+                streak = 0;
+            } else if (hasil[0] == 'B' && hasil[1] == 'B' && hasil[2] == 'B') {
+                poinB += 2;
+                streak = 0;
+            } else if (hasil[0] == 'C' || hasil[1] == 'C' || hasil[2] == 'C' ||
+                (hasil[0] != hasil[1] || hasil[1] != hasil[2])) {
+                hasil[0] = hasil[1];
+                hasil[1] = hasil[2];
+                streak = 2;
+                
+            }
+        }
+    }
+
+    cout<<"poin A: "<<poinA<<endl;
+    cout<<"poin B: "<<poinB<<endl;
+
+    if (poinA > poinB) {
+        cout<< "pemenangnya adalah pemain A" <<endl;
+    } else if (poinB > poinA) {
+        cout<< "pemenangnya adalah pemain B" <<endl;
+    } else {
+        cout<< "hasil pertandingan seri" <<endl;
+    }
+    
+    return 0;
+}
+
+//algoritma:
+1. user akan diminta utk menginput jumlah babak dlm 1 pertandingan dan pemenang tiap babak sebanyak jumlah babak
+    'A' jika pemain a menang, 'B' jika pemain b menang, 'C' jika pertandingan seri
+2. hasil 3 pertandingan terakhir akan disimpan di hasil[4] utk mengecek apakah ada 3 kali menang berturut turut
+3. jika tim menang maka tim tersebut akan mendapat 3 poin, jika seri maka masing2 tim mendapat 1 poin
+4. simpan riwayat 3 pertandingan terakhir, tambah hasil ke array hasil[], jika sudah penuh geser isinya ke kiri lalu masukkan data baru di akhir
+5. apakah pemain A atau B menang 3 kali berturut-turut akan dicek menggunakan operator
+    jika terdapat streak maka akan diberi bonus 2 poin, setelah itu reset streak ke 0 karena bonus sudah diberikan
+6. jika ada hasil 'C' atau campuran 'A' dan 'B', streak dianggap rusak
+7. output akan menghasilkan jumlah poin A dan poin B, dan hasil dari pertandingan
