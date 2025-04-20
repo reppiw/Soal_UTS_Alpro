@@ -2,8 +2,55 @@
 using namespace std;
 int main() {
     char nomor[20];
-    int panjang =0;
+    int panjang=0;
+    string jenis;
 
-    cout<<"Masukkan nomor kartu digital: ";
+    cout<<"masukkan nomor kartu digital: ";
     cin>>nomor;
+
+while (nomor[panjang] != '\0') {
+        panjang++;
+    }
+
+bool valid: false;
+
+if (panjang == 14 && nomor[0] == '6' && nomor[1] == '5') {
+        jenis = "NUSANTARA";
+        valid = true;
+    } else if (panjang == 16 && ((nomor[0] == '7' && nomor[1] == '7') || (nomor[0] == '7' && nomor[1] == '8'))) {
+        jenis = "GARUDA";
+        valid = true;
+    } else if (panjang == 15 && nomor[0] == '9' && nomor[1] == '1') {
+        jenis = "MERDEKA";
+        valid = true;
+    }
+
+if (!valid) {
+        cout<<"Jenis kartu tidak dikenal\n";
+        return 0;
+    }
+
+for (int i = panjang - 1; i >= 0; i--) {
+    int digit = nomor[i] - '0';
+    if ((panjang - 1 - i) % 2 == 1) {
+        int hasil = digit * 2;
+        if (hasil > 9) {
+            hasil = (hasil / 10) + (hasil % 10); }
+        total += hasil; }
+    else {
+        total += digit; }
+}
+
+cout<<"tipe kartu: "<<jenis<<endl;
+
+    if (total % 10 == 0) {
+        cout << "nomor kartu valid\n";
+    } else {
+        cout << "nomor kartu tidak valid\n";
+    }
+    return 0;
+}
+
+algoritma
+
 
