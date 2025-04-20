@@ -12,24 +12,25 @@ while (nomor[panjang] != '\0') {
         panjang++;
     }
 
-bool valid: false;
+bool kartu: false;
 
 if (panjang == 14 && nomor[0] == '6' && nomor[1] == '5') {
         jenis = "NUSANTARA";
-        valid = true;
+        kartu = true;
     } else if (panjang == 16 && ((nomor[0] == '7' && nomor[1] == '7') || (nomor[0] == '7' && nomor[1] == '8'))) {
         jenis = "GARUDA";
-        valid = true;
+        kartu = true;
     } else if (panjang == 15 && nomor[0] == '9' && nomor[1] == '1') {
         jenis = "MERDEKA";
-        valid = true;
+        kartu = true;
     }
 
-if (!valid) {
-        cout<<"Jenis kartu tidak dikenal\n";
+if (!kartu) {
+        cout<<"jenis kartu tidak dikenal\n";
         return 0;
     }
 
+int total= 0;
 for (int i = panjang - 1; i >= 0; i--) {
     int digit = nomor[i] - '0';
     if ((panjang - 1 - i) % 2 == 1) {
@@ -51,6 +52,16 @@ cout<<"tipe kartu: "<<jenis<<endl;
     return 0;
 }
 
-algoritma
-
-
+//algoritma:
+//1. user akan memasukkan nomor kartu digital 
+//2. kemudian program akan menetukan jenis kartu sesuai syaratnya dengan menggunakan if lalu dicek apakah nomor tersebut benar menggunakan bool
+//3. jika nomor yg dimasukkan sesuai jumlahnya dengan syarat masing2 jenis kartu maka nomor tersebut akan bernilai true dan akan lanjut dieksekusi
+    //jika tidak sesuai maka nomor tersebut akan bernilai false dan akan muncul "kartu tidak dikenal"
+   // cth: jika panjang nomornya 14 digit dan (&&) diawali dengan angka 65, maka tipe kartu tersebut adalah kartu nusantara
+//4. nomor yg bernilai true kemudian akan melalui validasi nusantara, disini menggunakan for dan if else
+//5. Mulai dari digit kedua dari belakang, kalikan setiap digit selang-seling (setiap 2 digit) dengan 2
+    //Jika hasil kali tersebut lebih dari 9, jumlahkan digit-digit dari hasilnya
+    //Jumlahkan semua hasil dari langkah di atas
+    //Jumlahkan dengan semua digit yang tidak dikalikan di langkah pertama
+    //Jika hasil total habis dibagi 10 (mod), maka nomor kartu tersebut valid
+//6. kemudian output dari program adalah tipe kartunya apa dan apakah kartu valid atau tidak
