@@ -68,7 +68,7 @@ int main() {
     //'A' jika pemain a menang, 'B' jika pemain b menang, 'C' jika pertandingan seri
 //2. hasil 3 pertandingan terakhir akan disimpan di hasil[4] utk mengecek apakah ada 3 kali menang berturut turut
 //3. jika tim menang maka tim tersebut akan mendapat 3 poin, jika seri maka masing2 tim mendapat 1 poin
-//4. simpan riwayat 3 pertandingan terakhir, tambah hasil ke array hasil[], jika sudah penuh geser isinya ke kiri lalu masukkan data baru di akhir
+//4. simpan riwayat 3 pertandingan terakhir ke array hasil[], jika sudah penuh geser isinya ke kiri lalu masukkan data baru di akhir
 //5. apakah pemain A atau B menang 3 kali berturut-turut akan dicek menggunakan operator
     //jika terdapat streak maka akan diberi bonus 2 poin, setelah itu reset streak ke 0 karena bonus sudah diberikan
 //6. jika ada hasil 'C' atau campuran 'A' dan 'B', streak dianggap rusak
